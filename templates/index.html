@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block head %}
+<title>Web Scraper SIMASTER V2</title>
+{% endblock %} {% block body %}
+
+<h1 class="text-center m-3">Web Scraper SIMASTER V2</h1>
+<table class="table table-stripped table-bordered">
+  <thead>
+    <tr class="table-primary text-center">
+      <td>No.</td>
+      <td>Kode</td>
+      <td>Mata Kuliah</td>
+      <td>Status Nilai</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for matkul in daftar_matkul %}
+    <tr>
+      <td class="text-center">{{ matkul.id_matkul }}</td>
+      <td>{{ matkul.kode }}</td>
+      <td>{{ matkul.name }}</td>
+      {% if matkul.updated %}
+      <td class="text-center">
+        <span class="badge bg-success">Sudah keluar</span>
+      </td>
+      {% else %}
+      <td class="text-center">
+        <span class="badge bg-light text-dark">Belum keluar</span>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<form action="/" method="POST">
+  <button type="submit">Check for updates</button>
+</form>
+{%endblock %}
